@@ -28,6 +28,7 @@ resource "random_string" "password" {
 
 module "aviatrix-iam-roles" {
   source = "github.com/AviatrixSystems/terraform-modules.git//aviatrix-controller-iam-roles?ref=terraform_0.12"
+  name_prefix = "demo"
 }
 
 module "aviatrix-controller-build" {

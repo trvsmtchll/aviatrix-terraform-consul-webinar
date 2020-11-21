@@ -3,15 +3,6 @@ provider "aws" {
   region  = "us-east-1"
 }
 
-provider "azurerm" {
-  version = "=2.13.0"
-  features {}
-}
-
-provider "azuread" {
-  version = "=0.10.0"
-}
-
 resource "random_string" "env" {
   length  = 4
   special = false
