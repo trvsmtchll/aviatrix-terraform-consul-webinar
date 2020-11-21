@@ -1,31 +1,34 @@
-# aviatrix-terraform-consul-webinar
+# Aviatrix Vagrant Build
 
 ## Overview
-This repo will deploy a multi-cloud Consul solution on top of Aviatrix networking platform.
-You can use Terraform to deploy the solution end-to-end. <br>
+This repo will deploy an ubuntu 18.04 machine using Vagrant with the latest AWS, Azure, and Google Cloud SDK. Terraform 12.29 will also be installed. The repo also will create a shared services VPC in AWS and launch a metered Aviatrix controller into it.<br>
 
-See the instructions below to deploy this to your AWS & Azure environments.
+## Pre-requisites
 
-## Demo Video
-The webinar video for this repo is on YouTube: https://youtu.be/Irt81hskUIg?t=2081
+1. [Install Vagrant](https://www.vagrantup.com/downloads) on your workstation
+2. [Install VirtualBox](https://www.virtualbox.org/wiki/Downloads) on your workstation
+3. Set/export the following environment variables:
+   1. AWS_SECRET_ACCESS_KEY
+   2. AWS_ACCESS_KEY_ID
 
-## Topology
-The below diagram is a [Aviatrix Co-Pilot](https://aviatrix.com/cloud-network-platform/) rendering of the environment.
-![Topology](copilot.png)
+4. [Subscribe to the Aviatrix Controller in AWS Marketplace and Accept Terms](https://aws.amazon.com/marketplace/pp/B086T2RVTF/)
 
-## Instructions
-To deploy the solution run the Terraform modules in the following order.
 
-1. [Infra](terraform/01-infra)
-1. [Aviatrix](terraform/02-aviatrix)
-1. [Transit](terraform/03-transit)
-1. [Consul](terraform/04-consul)
-1. [Workloads](terraform/05-workloads)
+## Workflow
 
-## Run the demo
-You can send traffic to the frontend application endpoint after you have deployed the [workloads](terraform/workloads) applications.
-The application will be available via the EKS managed AWS LB. <br>
+1. [Build VM](vagrant-box) 
+   1. ```cd vagrant box```
+   2. ```vagrant up``` 
+   3. The ubuntu vm will take a few minutes, when its done ```vagrant ssh```
+2. [Build Shared Services VPC](terraform/01-infra)
+   1. ```cd 01-infra```
+   2. ```terraform init```
+   3. ```terraform plan```
+   4. ```terraform apply --auto-approve```
+3. [Launch Aviatrix Controller](terraform/02-aviatrix)
+   1. ```cd 02-aviatrix```
+   2. ```terraform init```
+   3. ```terraform plan```
+   4. ```terraform apply --auto-approve```
 
-Envoy application traces configured by Consul will be available in the Jaeger UI. <br>
 
-If you have a CoPilot license you can connect it to this environment and follow along with the steps in the webinar video.
