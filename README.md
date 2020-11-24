@@ -1,7 +1,7 @@
 # Aviatrix Vagrant Build
 
 ## Overview
-This repo will deploy an ubuntu 18.04 machine using Vagrant with the latest AWS, Azure, and Google Cloud SDK. Terraform 12.29 will also be installed. The repo also will create a shared services VPC in AWS and launch a metered Aviatrix controller into it.<br>
+This repo will deploy an ubuntu 18.04 machine using Vagrant with the latest AWS, Azure, Google Cloud SDK, and Terraform 12.29. The repo also will create a shared services VPC in AWS and launch a metered Aviatrix controller into it.<br>
 
 ## Pre-requisites
 
@@ -16,19 +16,11 @@ This repo will deploy an ubuntu 18.04 machine using Vagrant with the latest AWS,
 
 ## Workflow
 
-1. [Build VM](vagrant-box) 
-   1. ```cd vagrant box```
-   2. ```vagrant up``` 
-   3. The ubuntu vm will take a few minutes, when its done ```vagrant ssh```
-2. [Build Shared Services VPC](terraform/01-infra)
-   1. ```cd 01-infra```
-   2. ```terraform init```
-   3. ```terraform plan```
-   4. ```terraform apply --auto-approve```
-3. [Launch Aviatrix Controller](terraform/02-aviatrix)
-   1. ```cd 02-aviatrix```
-   2. ```terraform init```
-   3. ```terraform plan```
-   4. ```terraform apply --auto-approve```
+1. Clone this repository
+2. ```vagrant up```
+3. ```vagrant ssh```
+4. ```cd /vagrant```
+5. ```./build-shared-vpc.sh```
+6. More to come - need to automate check for aviatrix-ec2-role with python
 
 

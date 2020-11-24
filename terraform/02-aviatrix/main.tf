@@ -51,3 +51,7 @@ module "aviatrix-controller-initialize" {
   vpc_id              = data.terraform_remote_state.infra.outputs.aws_shared_svcs_vpc
   subnet_id           = data.terraform_remote_state.infra.outputs.aws_shared_svcs_public_subnets[0]
 }
+
+
+
+
