@@ -1,6 +1,13 @@
 # Vagrant
 *.vagrant*
 
+# JSON and env files
+*.json
+*.env
+
+# Generated box files
+*.box
+
 # Local .terraform directories
 **/.terraform/*
 

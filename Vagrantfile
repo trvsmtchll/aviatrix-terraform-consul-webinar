@@ -4,20 +4,20 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider :virtualbox do |vb|
 		vb.name = 'aviatrix-vm'
-		vb.customize ['modifyvm', :id, '--memory', '2048', '--cpus', '2']
+		vb.customize ['modifyvm', :id, '--memory', '1024', '--cpus', '1']
   end
   
   # config.vm.synced_folder "../terraform", "/build"
 
   config.vm.provision "shell", inline: <<-SHELL
-    if [ "#{ENV["AWS_SECRET_ACCESS_KEY"]}" = "" ]; then
-      echo "Missing: AWS_SECRET_ACCESS_KEY";
-      exit 1;
-    fi;
-    if [ "#{ENV["AWS_ACCESS_KEY_ID"]}" = "" ]; then
-      echo "Missing: AWS_ACCESS_KEY_ID";
-      exit 1;
-    fi;
+    #if [ "#{ENV["AWS_SECRET_ACCESS_KEY"]}" = "" ]; then
+    #  echo "Missing: AWS_SECRET_ACCESS_KEY";
+    #  exit 1;
+    #fi;
+    #if [ "#{ENV["AWS_ACCESS_KEY_ID"]}" = "" ]; then
+    #  echo "Missing: AWS_ACCESS_KEY_ID";
+    #  exit 1;
+    #fi;
      sudo apt-get update -y
      sudo apt-get install -y bc git jq python-pip zip unzip wget software-properties-common;
      sudo add-apt-repository ppa:deadsnakes/ppa;
